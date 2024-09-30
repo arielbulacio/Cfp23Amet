@@ -1,0 +1,45 @@
+Este código es un ejemplo de una aplicación web simple utilizando Flask, un microframework para crear aplicaciones web en Python. Aquí te explico línea por línea:
+1. import os
+
+Este módulo de Python te permite acceder a funcionalidades del sistema operativo, como variables de entorno.
+2. from flask import Flask, send_file
+
+Importa dos elementos desde el paquete Flask:
+
+    Flask: Es la clase principal que define la aplicación web.
+    send_file: Es una función que se usa para enviar archivos al cliente, en este caso el archivo HTML.
+
+3. app = Flask(__name__)
+
+Aquí se crea una instancia de la aplicación Flask. El argumento __name__ le indica a Flask el nombre del módulo actual, lo cual ayuda a Flask a encontrar recursos y archivos relacionados con la aplicación.
+4. @app.route("/")
+
+Este es un decorador que define una ruta de la aplicación web. La ruta / es la página principal del sitio, es decir, cuando visitas la raíz de la aplicación web (por ejemplo, http://localhost/).
+5. def index():
+
+Esta función es el controlador para la ruta /. Cuando un usuario visite la página principal, esta función se ejecutará.
+6. return send_file('src/index.html')
+
+Aquí, la función send_file se utiliza para enviar al cliente el archivo index.html que se encuentra en la carpeta src. Es decir, cuando el usuario visita la página principal, se le mostrará el contenido de este archivo HTML.
+7. def main():
+
+Define una función llamada main que ejecuta la aplicación Flask.
+8. app.run(port=int(os.environ.get('PORT', 80)))
+
+Este es el comando que inicia la aplicación.
+
+    os.environ.get('PORT', 80) intenta obtener la variable de entorno PORT, que especificaría en qué puerto correrá la aplicación. Si no está definida, utiliza el puerto 80 por defecto (el puerto estándar para HTTP).
+
+9. if __name__ == "__main__":
+
+Este es un bloque común en los programas Python. Lo que hace es verificar si el archivo está siendo ejecutado directamente (es decir, no es importado como un módulo en otro programa). Si es así, ejecuta la función main().
+10. main()
+
+Llama a la función principal que inicia el servidor Flask.
+Funcionamiento general
+
+    Al ejecutar el script, Flask iniciará un servidor web.
+    Al navegar a la página principal (ruta /), Flask servirá el archivo index.html ubicado en la carpeta src.
+    Si la variable de entorno PORT no está configurada, el servidor correrá en el puerto 80.
+
+Este código podría usarse en una aplicación web sencilla donde quieras servir una página estática (como un archivo HTML) al cliente.
